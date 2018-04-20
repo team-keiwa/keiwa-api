@@ -1,8 +1,9 @@
 const Sequelize = require("sequelize");
-
 const connection = require("../connection");
-
 const SubSector = require("./SubSector");
+const Media = require("./Media");
+const Product = require("./Product");
+
 
 const Service = connection.define("service", {
     name: {
@@ -18,5 +19,7 @@ const Service = connection.define("service", {
 });
 
 Service.belongsTo(SubSector);
+Service.belongsTo(Media);
+Service.hasMany(Product);
 
 module.exports = Service;

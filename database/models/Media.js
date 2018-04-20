@@ -26,15 +26,4 @@ const Media = connection.define("media", {
     }
 });
 
-Media.hasOne(Language);
-Media.hasOne(Suggestion);
-Media.hasOne(Currency);
-Media.hasOne(Product);
-Media.hasOne(Service);
-Media.hasOne(SubSector);
-Media.hasOne(Sector);
-Media.hasOne(Wallet);
-Media.hasOne(Charge);
-Media.hasOne(Account);
-
 module.exports = Media;

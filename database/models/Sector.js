@@ -1,6 +1,8 @@
 const Sequelize = require("sequelize");
-
 const connection = require("../connection");
+const Media = require("./Media");
+const SubSector = require("./SubSector");
+
 
 const Sector = connection.define("sector", {
     name: {
@@ -14,5 +16,8 @@ const Sector = connection.define("sector", {
         unique: true
     }
 });
+
+Sector.hasMany(SubSector);
+Sector.belongsTo(Media);
 
 module.exports = Sector;

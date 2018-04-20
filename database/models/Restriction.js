@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
-
 const connection = require("../connection");
+const Account = require("./Account");
 
 const Levels = {
     ADMIN: 0,
@@ -21,8 +21,11 @@ const Restriction = connection.define("restriction", {
     level: {
         type: Sequelize.ENUM,
         values: [Levels.ADMIN, Levels.SELLER],
-        allowNull: false
+        allowNull: false,
+        defaultValue: Levels.ADMIN
     }
 });
+
+Restriction.hasMany(Account);
 
 module.exports = Restriction;

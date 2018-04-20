@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const connection = require("../connection");
+const User = require("./User");
 
 
 const Language = connection.define("language", {
@@ -10,5 +11,8 @@ const Language = connection.define("language", {
 }, {
     timestamps: false
 });
+
+Language.hasMany(User);
+Language.belongsTo(Media)
 
 module.exports = Language;

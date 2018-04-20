@@ -1,6 +1,8 @@
 const Sequelize = require("sequelize");
-
 const connection = require("../connection");
+const Media = require("./Media");
+const User = require("./User");
+
 
 const Wallet = connection.define("wallet", {
     name: {
@@ -9,5 +11,8 @@ const Wallet = connection.define("wallet", {
         unique: true
     }
 });
+
+Wallet.belongsTo(Media);
+Wallet.belongsToMany(User);
 
 module.exports = Wallet;
