@@ -64,4 +64,6 @@ User.belongsToMany(Wallet);
 User.hasMany(Account);
 User.hasMany(WorkingDay);
 
+connection.sync({ force: true }).then(() => console.log("Created table User"));
+
 module.exports = User

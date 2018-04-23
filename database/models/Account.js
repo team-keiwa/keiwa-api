@@ -18,7 +18,8 @@ const Account = connection.define("account", {
 }, {
     hooks: {
         beforeCreate: (account, options) => {
-            account.password = bcrypt.hash(account.password)
+            const saltRounds = 10;
+            account.password = bcrypt.hash(myPlaintextPassword, saltRounds).then(hash => hash);
         }
     }
 });
