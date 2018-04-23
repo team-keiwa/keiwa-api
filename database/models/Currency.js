@@ -1,8 +1,5 @@
 const Sequelize = require("sequelize");
 const connection = require("../connection");
-const User = require("./User");
-const Media = require("./Media");
-
 
 const Currency = connection.define("currency", {
     name: {
@@ -12,7 +9,6 @@ const Currency = connection.define("currency", {
     }
 }, { timestamps: false });
 
-Currency.hasMany(User);
-Currency.belongsTo(Media);
+connection.sync().then(() => console.log("Created model currency"));
 
 module.exports = Currency;

@@ -1,6 +1,7 @@
 const { 
     GraphQLObjectType, 
     GraphQLInt, 
+    GraphQLList
 } = require("graphql");
 const UserModel = require("./database/models/User");
 const LanguageModel = require("./database/models/Language");
@@ -20,7 +21,7 @@ module.exports = new GraphQLObjectType({
             }
         },
         findLanguageByUser: {
-            type: LangueType,
+            type: LanguageType,
             args: { userId: { type: GraphQLInt } },
             resolve(parentValue, args) {
                 return UserModel.findById(userId).then(

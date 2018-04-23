@@ -12,8 +12,7 @@ const Currency = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLInt },
         name: { type: GraphQLString },
-        icon: { type: GraphQLString },
-        users: { type: new GraphQLList(User) }
+        icon: { type: GraphQLString }
     })
 });
 

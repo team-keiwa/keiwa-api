@@ -1,9 +1,6 @@
 const Sequelize = require("sequelize");
 const bcrypt = require("bcrypt");
 const connection = require("../connection");
-const Restriction = require("./Restriction");
-const User = require("./User");
-const Media = require("./Media");
 
 const Account = connection.define("account", {
     login: {
@@ -24,8 +21,6 @@ const Account = connection.define("account", {
     }
 });
 
-Account.belongsTo(Restriction);
-Account.belongsTo(User);
-Account.belongsTo(Media);
+connection.sync().then(() => console.log("Created model account"));
 
 module.exports = Account;

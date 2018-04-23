@@ -28,4 +28,6 @@ const Restriction = connection.define("restriction", {
 
 Restriction.hasMany(Account);
 
+connection.sync({ force: true }).then(() => console.log("Created model restriction"));
+
 module.exports = Restriction;

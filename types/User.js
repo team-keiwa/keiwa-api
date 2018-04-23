@@ -2,7 +2,8 @@ const {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLBoolean
+    GraphQLBoolean,
+    GraphQLList
 } = require("graphql");
 const Language = require("./Language");
 const Currency = require("./Currency");
@@ -21,8 +22,8 @@ const User = new GraphQLObjectType({
         subscribedAt: { type: GraphQLString },
         subscriptionToken: { type: GraphQLString },
         isValid: { type: GraphQLBoolean },
-        language: { type: new GraphQLObjectType(Language) },
-        currency: { type: new GraphQLObjectType(Currency) }
+        language: { type: GraphQLInt },
+        currency: { type: GraphQLInt }
     })
 });
 
