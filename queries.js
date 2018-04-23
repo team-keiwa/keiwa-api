@@ -3,32 +3,38 @@ const {
     GraphQLInt, 
 } = require("graphql");
 const UserModel = require("./database/models/User");
-const LangueType = require("./types/Langue");
-const MonnaieType = require("./types/Monnaie");
-const ActiviteType = require('./types/Activite');
+const LanguageModel = require("./database/models/Language");
+const LanguageType = require("./types/Language");
+const CurrencyType = require("./types/Currency");
+
 
 module.exports = new GraphQLObjectType({
     name: "RootQuery",
     fields: {
-        getUserLangue: {
+        findAllLanguages: {
+            type: new GraphQLList(LanguageType),
+            resolve(parentValue, args) {
+                return LanguageModel.findAll().then(
+                    languages => languages.dataValues
+                );
+            }
+        },
+        findLanguageByUser: {
             type: LangueType,
-            args: { user_id: { type: GraphQLInt } },
+            args: { userId: { type: GraphQLInt } },
             resolve(parentValue, args) {
-                return new UserModel().findLangue(args.user_id).then(value => value[0]);
+                return UserModel.findById(userId).then(
+                    user => user.dataValues.language
+                );
             }
         },
-        getUserMonnaie: {
-            type: MonnaieType,
-            args: { user_id: { type: GraphQLInt } },
+        findCurrencyByUser: {
+            type: CurrencyType,
+            args: { userId: { type: GraphQLInt } },
             resolve(parentValue, args) {
-                return new UserModel().findMonnaie(args.user_id).then(value => value[0]);
-            }
-        },
-        getUserActivity: {
-            type: ActiviteType,
-            args: { user_id: { type: GraphQLInt } },
-            resolve(parentValue, args) {
-                return new UserModel().findActivity(args.user_id).then(value => value[0]);
+                return UserModel.findById(args.userId).then(
+                    user => user.dataValues.currency
+                );
             }
         }
     }

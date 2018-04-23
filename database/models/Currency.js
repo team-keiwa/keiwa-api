@@ -10,9 +10,7 @@ const Currency = connection.define("currency", {
         allowNull: false,
         unique: true
     }
-}, {
-    timestamps: false
-});
+}, { timestamps: false });
 
 Currency.hasMany(User);
 Currency.belongsTo(Media);

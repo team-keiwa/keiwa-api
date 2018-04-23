@@ -1,28 +1,29 @@
 const {
     GraphQLObjectType,
-    GraphQLInputObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLBoolean,
-    GraphQLSchema,
-    GraphQLList,
-    GraphQLNonNull
+    GraphQLBoolean
 } = require("graphql");
+const Language = require("./Language");
+const Currency = require("./Currency");
 
-module.exports = new GraphQLObjectType({
+
+const User = new GraphQLObjectType({
     name: 'User',
     fields:()=>({
-		id_user: { type: GraphQLInt },
-        nom_user: { type: GraphQLString },
-        prenom_user: { type: GraphQLString },
-        mail_user: { type: GraphQLString },
-        date_inscription: { type: GraphQLString },
-        sexe_user: { type: GraphQLInt },
-        location_user: { type: GraphQLString },
-        status_user: { type: GraphQLInt },
-        langue_id_langue: { type: GraphQLInt },
-        monnaie_id_monnaie: { type: GraphQLInt },
-        sous_categorie_id_sous_categorie: { type: GraphQLInt }
+		id: { type: GraphQLInt },
+        fName: { type: GraphQLString },
+        lName: { type: GraphQLString },
+        cellphone: { type: GraphQLString },
+        email: { type: GraphQLString },
+        gender: { type: GraphQLString },
+        location: { type: GraphQLString },
+        subscribedAt: { type: GraphQLString },
+        subscriptionToken: { type: GraphQLString },
+        isValid: { type: GraphQLBoolean },
+        language: { type: new GraphQLObjectType(Language) },
+        currency: { type: new GraphQLObjectType(Currency) }
     })
 });
 
+module.exports = User;
